@@ -77,7 +77,7 @@ export default {
 
         {
           url: '',
-          title: '地图呈现',
+          title: '图表呈现',
           icon: 'menu',
           children: [
             {
