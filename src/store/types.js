@@ -1,0 +1,7 @@
+const INCREMENT = 'INCREMENT';
+const SETPAGETITLE = 'SETPAGETITLE';
+
+export default {
+  INCREMENT,
+  SETPAGETITLE
+}
