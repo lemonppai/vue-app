@@ -10,6 +10,7 @@ export default {
       loading: false,
       visible: false,
       unbinds: [],
+      charts: [],
       form: {
       }
     }
@@ -45,9 +46,8 @@ export default {
       console.warn('请定义refresh方法')
     },
 
-    // 表格渲染
-    render(el, option) {
-      console.log(el)
+    // 图表渲染
+    renderChart(el, option) {
       let chart = echarts.init(el);
       chart.setOption(option);
       chart.resize();

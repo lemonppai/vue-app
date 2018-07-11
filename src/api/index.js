@@ -58,3 +58,15 @@ export const bar = {
     }).then(instance.succ(callback));
   }
 }
+
+// 折线图
+export const line = {
+  getChart(param, callback) {
+    return instance({
+      method: 'get',
+      url: '/line/getChart',
+      params: param,
+      loading: true,
+    }).then(instance.succ(callback));
+  }
+}

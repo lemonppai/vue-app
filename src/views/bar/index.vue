@@ -15,9 +15,10 @@
 </template>
 
 <script>
+import moment from 'moment';
 import ChartPage from "@/components/chartPage";
 import mixPage from "@/components/chartPage/mixin";
-import * as API from '@/api';
+import * as API from "@/api";
 
 export default {
   mixins: [mixPage],
@@ -27,7 +28,7 @@ export default {
   data() {
     return {
       form: {
-        date: null,
+        date: moment(),
         name: ""
       }
     };
@@ -41,29 +42,33 @@ export default {
   methods: {
     refresh() {
       this.loading = true;
-      API[this.name].getChart(this.form, data => {
-        this.loading = false;
-        this.render123(data);
-      }).catch(() => this.loading = false);
+      API[this.name]
+        .getChart(this.form, data => {
+          this.loading = false;
+          this.render(data);
+        })
+        .catch(() => (this.loading = false));
     },
 
-    render123(data) {
-      console.log(data)
+    render(data) {
+      console.log(data);
       let option = {
-          xAxis: {
-              type: 'category',
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yAxis: {
-              type: 'value'
-          },
-          series: [{
-              data: [820, 932, 901, 934, 1290, 1330, 1320],
-              type: 'line'
-          }]
+        xAxis: {
+          type: "category",
+          data: data.data.map(item => item.name)
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: data.data.map(item => item.count),
+            type: "bar"
+          }
+        ]
       };
 
-      this.render(this.$refs.chart, option);
+      this.renderChart(this.$refs.chart, option);
     }
   }
 };
