@@ -56,7 +56,7 @@ export default {
     // 获取图表实例
     getChart(el) {
       let index = this.els.indexOf(el);
-      let chart = this.els[ index ];
+      let chart = this.charts[ index ];
 
       // 初始化图片
       if (!chart) {
