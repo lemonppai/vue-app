@@ -4,6 +4,7 @@
 
 import instance from '@/axios.config.js';
 
+// 用户管理
 export const user = {
   // 获取列表
   getList(param, callback) {
@@ -45,3 +46,15 @@ export const user = {
     }).then(instance.succ(callback));
   }
 };
+
+// 柱状图
+export const bar = {
+  getChart(param, callback) {
+    return instance({
+      method: 'get',
+      url: '/bar/getChart',
+      params: param,
+      loading: true,
+    }).then(instance.succ(callback));
+  }
+}

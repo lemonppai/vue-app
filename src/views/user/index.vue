@@ -9,13 +9,13 @@
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" @click="refresh()">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="refresh(1)">查询</el-button>
       </el-form-item>
     </el-form>
 
-    <el-row style="padding: 10px 0; border-top: 1px solid #ebeef5;">
+    <template slot="button">
       <el-button icon="el-icon-plus" type="primary" @click="handleAdd">新增</el-button>
-    </el-row>
+    </template>
 
     <dialog-form v-if="visible" @close="visible = false" :row="row" @refresh="refresh"></dialog-form>
 

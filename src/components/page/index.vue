@@ -6,6 +6,10 @@
 
     <slot></slot>
 
+    <el-row style="padding: 10px 0; border-top: 1px solid #ebeef5;">
+      <slot name="button"></slot>
+    </el-row>
+
     <div class="page-main">
       <div ref="tableWrap" :style="{ height: height + 'px' }">
         <slot name="table"></slot>
@@ -53,6 +57,10 @@ export default {
     this.init();
   },
 
+  beforeDestroy() {
+    this.unbind && this.unbind();
+  },
+
   methods: {
     resize() {
       let rect = this.$refs.tableWrap.getBoundingClientRect();
@@ -64,7 +72,7 @@ export default {
     init() {
       this.resize();
 
-      addEvent(window, 'resize', () => {
+      this.unbind = addEvent(window, 'resize', () => {
         this.resize();
       })
     },

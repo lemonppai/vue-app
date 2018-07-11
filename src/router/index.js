@@ -47,6 +47,18 @@ export default new Router({
       path: '/user',
       name: 'user',
       component: () => import('@/views/user')
+    },
+
+    {
+      path: '/bar',
+      name: 'bar',
+      component: () => import('@/views/bar')
+    },
+
+    {
+      path: '/line',
+      name: 'line',
+      component: () => import('@/views/line')
     }
   ]
 })
