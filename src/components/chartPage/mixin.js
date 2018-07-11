@@ -9,7 +9,7 @@ export default {
       url: null,  // 列表接口
       loading: false,
       visible: false,
-      unbinds: [],
+      els: [],
       charts: [],
       form: {
       }
@@ -17,11 +17,11 @@ export default {
   },
 
   mounted() {
-    this.refresh();
+    this.init();
   },
 
   beforeDestroy() {
-    this.unbinds.forEach(cb => cb());
+    this.unbind && this.unbind();
   },
 
   methods: {
@@ -42,20 +42,36 @@ export default {
       }
     }, */
 
+    init() {
+      this.refresh();
+      this.unbind = addEvent(window, 'resize', () => {
+        this.charts.forEach(chart => chart.resize());
+      })
+    },
+
     refresh() {
       console.warn('请定义refresh方法')
     },
 
+    // 获取图表实例
+    getChart(el) {
+      let index = this.els.indexOf(el);
+      let chart = this.els[ index ];
+
+      // 初始化图片
+      if (!chart) {
+        chart = echarts.init(el);
+        this.charts.push(chart);
+        this.els.push(el);
+      }
+      return chart;
+    },
+
     // 图表渲染
     renderChart(el, option) {
-      let chart = echarts.init(el);
+      let chart = this.getChart(el);
       chart.setOption(option);
       chart.resize();
-
-      let fn = addEvent(window, 'resize', () => {
-        chart.resize();
-      })
-      this.unbinds.push(fn);
     }
   }
 }
