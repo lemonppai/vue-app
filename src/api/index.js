@@ -4,11 +4,44 @@
 
 import instance from '@/axios.config.js';
 
-export const insertMenu = (param, callback) => {
-  return instance({
-    method: 'post',
-    url: '/user',
-    data: param,
-    loading: true,
-  }).then(instance.succ(callback));
-}
+export const user = {
+  // 获取列表
+  getList(param, callback) {
+    return instance({
+      method: 'get',
+      url: '/user/getList',
+      params: param,
+      loading: false,
+    }).then(instance.succ(callback));
+  },
+
+  // 新增
+  insert(param, callback) {
+    return instance({
+      method: 'post',
+      url: '/user/insert',
+      data: param,
+      loading: true,
+    }).then(instance.succ(callback));
+  },
+
+  // 编辑
+  update(param, callback) {
+    return instance({
+      method: 'post',
+      url: '/user/update',
+      data: param,
+      loading: true,
+    }).then(instance.succ(callback));
+  },
+
+  // 删除
+  del(param, callback) {
+    return instance({
+      method: 'delete',
+      url: '/user/delete',
+      data: param,
+      loading: true,
+    }).then(instance.succ(callback));
+  }
+};

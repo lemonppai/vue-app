@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="编辑" width="400px" :visible.sync="visible" @close="close" @leave="leave">
+  <el-dialog :title="title" width="400px" :visible.sync="visible" @close="close" @leave="leave">
     <el-form :model="form" label-width="80px">
       <!-- <el-form-item label="活动名称">
         <el-input v-model="form.name" auto-complete="off" style="width: 300px;"></el-input>
@@ -58,14 +58,6 @@ export default {
     }
   },
   methods: {
-
-    // 表单提交
-    submit() {
-      // console.log(this.form);
-      API.insertMenu(this.form, (data) => {
-        console.log(data);
-      })
-    }
   }
 }
 </script>

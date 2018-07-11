@@ -11,12 +11,14 @@
         <slot name="table"></slot>
 
         <el-pagination
-          :current-page="2"
+          :current-page="pagination.pageIndex"
           :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
+          :page-size="pagination.pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="pagination.total"
           style="text-align: right; padding: 6px;"
+          @current-change="currentChange"
+          @size-change="sizeChange"
         >
         </el-pagination>
       </div>
@@ -28,7 +30,20 @@
 import { addEvent } from '@/utils';
 
 export default {
+  props: {
+    pagination: {
+      type: Object,
+      default: () => {
+        return {
+          total: 0,
+          pageIndex: 1,
+          pageSize: 10
+        }
+      }
+    }
+  },
   data() {
+    console.log(this.pagination)
     return {
       height: 300
     }
@@ -53,6 +68,14 @@ export default {
         this.resize();
       })
     },
+
+    currentChange(val) {
+      this.$emit('refresh', val);
+    },
+
+    sizeChange(val) {
+      this.$emit('refresh', 1, val);
+    }
   }
 }
 </script>

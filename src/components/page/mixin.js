@@ -1,26 +1,61 @@
+import * as API from '@/api';
+
 export default {
   data() {
     return {
+      name: this.$route.name, // 对应的API名称
+      url: null,  // 列表接口
       loading: false,
       visible: false,
       row: null,
-      form: {},
+      form: {
+      },
+      // 分页信息
+      pagination: {
+        total: 0,
+        pageIndex: 1,
+        pageSize: 10
+      },
+      // 表格数据
       tableData: [],
-
     }
   },
 
   mounted() {
     // this.init();
+    this.refresh();
   },
 
   methods: {
-    onSubmit() {
+    // 刷新列表
+    refresh(pageIndex = this.pagination.pageIndex, pageSize = this.pagination.pageSize) {
+
+
+
       // console.log('submit');
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000)
+      if (API[this.name]) {
+        /* this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+        }, 2000) */
+
+        this.pagination.pageIndex = pageIndex;
+        this.pagination.pageSize = pageSize;
+
+        this.loading = true;
+        API[this.name].getList({
+          ...this.form,
+          pageIndex: this.pagination.pageIndex,
+          pageSize: this.pagination.pageSize
+        }, data => {
+          this.loading = false;
+          this.pagination.total = data.data.total;
+          this.tableData = data.data.rows;
+        }).catch(() => this.loading = false);
+      }
+      else {
+        console.warn('请定义页面name，或定义相应的API接口')
+      }
     },
 
     // 新增
@@ -31,15 +66,25 @@ export default {
 
     // 删除
     handleDel(row) {
-      console.log('删除', row)
-      this.$message.success('删除成功');
+      console.info('删除', row)
+
+      this.$confirm('此操作将无法恢复, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        API[this.name].del(row, data => {
+          this.$message.success(data.message);
+          this.refresh();
+        })
+      }).catch(_ => {});
     },
 
     // 编辑
     handleEdit(row) {
+      console.info('编辑', row)
       this.visible = true;
       this.row = row;
-      console.log('编辑', row)
     }
   }
 }

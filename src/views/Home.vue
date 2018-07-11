@@ -62,11 +62,11 @@
 
       <!-- <el-button type="primary" @click="increment(10)">累加</el-button> -->
 
-      <el-button type="primary" @click="visible = true">打开弹窗</el-button>
+      <!-- <el-button type="primary" @click="visible = true">打开弹窗</el-button> -->
 
       <el-button type="primary" @click="showLoading">加载中</el-button>
 
-      <dialog-form :visible.sync="visible"></dialog-form>
+      <!-- <dialog-form :visible.sync="visible"></dialog-form> -->
     </div>
 
     <div>
@@ -122,7 +122,7 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { mapState, mapMutations, mapAtions, mapActions } from 'vuex';
 import loading from '@/utils/loading';
-import DialogForm from './dialog';
+// import DialogForm from './dialog';
 
 export default {
   name: 'home',
@@ -206,7 +206,7 @@ export default {
     }
   },
   components: {
-    DialogForm
+    // DialogForm
   }
 }
 </script>

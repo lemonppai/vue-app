@@ -1,3 +1,4 @@
+import * as API from '@/api';
 
 export default {
   props: {
@@ -8,15 +9,23 @@ export default {
 
     row: {
       type: Object,
-      default: () => {}
+      default: null
     }
   },
 
   data() {
     return {
+      name: this.$route.name,
+      type: !this.row ? 'insert' : 'update',
       visible: true,
       // 表单
       form: {}
+    }
+  },
+
+  computed: {
+    title() {
+      return this.type == 'insert' ? '新增' : '编辑';
     }
   },
 
@@ -38,6 +47,17 @@ export default {
 
     leave() {
       console.log('leave');
+    },
+
+    // 表单提交
+    submit() {
+      // console.log(this.form);
+      API.user[ this.type ](this.form, (data) => {
+        // console.log(data);
+        this.$message.success(data.message);
+        this.close();
+        this.$emit('refresh');
+      })
     }
   },
 

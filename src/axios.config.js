@@ -51,7 +51,7 @@ instance.interceptors.response.use(res => {
 // 成功处理
 instance.succ = (callback = noop) => {
   return (res) => {
-    if (res.data.code == 'success') {
+    if (res.data.status == 'ok') {
       callback(res.data);
     }
     else {

@@ -1,5 +1,5 @@
 <template>
-  <page>
+  <page :pagination="pagination" @refresh="refresh">
     <el-form slot="form" :inline="true" :model="form">
       <el-form-item label="日期">
         <!-- <el-input v-model="form.user" placeholder="审批人"></el-input> -->
@@ -9,7 +9,7 @@
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" @click="onSubmit">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="refresh()">查询</el-button>
       </el-form-item>
     </el-form>
 
@@ -17,7 +17,7 @@
       <el-button icon="el-icon-plus" type="primary" @click="handleAdd">新增</el-button>
     </el-row>
 
-    <dialog-form v-if="visible" @close="visible = false" :row="row"></dialog-form>
+    <dialog-form v-if="visible" @close="visible = false" :row="row" @refresh="refresh"></dialog-form>
 
     <el-table
       slot="table"
@@ -72,40 +72,7 @@ export default {
       form: {
         date: null,
         name: ''
-      },
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      }
     }
   },
 
