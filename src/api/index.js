@@ -54,7 +54,7 @@ export const bar = {
       method: 'get',
       url: '/bar/getChart',
       params: param,
-      loading: true,
+      loading: false,
     }).then(instance.succ(callback));
   }
 }
@@ -66,7 +66,7 @@ export const line = {
       method: 'get',
       url: '/line/getChart',
       params: param,
-      loading: true,
+      loading: false,
     }).then(instance.succ(callback));
   }
 }

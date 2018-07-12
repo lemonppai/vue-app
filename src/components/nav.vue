@@ -62,7 +62,7 @@ export default {
         {
           url: '',
           title: '管理平台',
-          icon: 'menu',
+          icon: 'setting',
           children: [
             {
               url: '/user',
@@ -78,7 +78,7 @@ export default {
         {
           url: '',
           title: '图表',
-          icon: 'menu',
+          icon: 'picture',
           children: [
             {
               url: '/chart/bar',

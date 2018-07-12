@@ -41,13 +41,13 @@ export default {
 
   methods: {
     refresh() {
-      this.loading = true;
+      this.showLoading();
       API[this.name]
         .getChart(this.form, data => {
-          this.loading = false;
+          this.hideLoading();
           this.render(data);
         })
-        .catch(() => (this.loading = false));
+        .catch(() => this.hideLoading());
     },
 
     render(data) {

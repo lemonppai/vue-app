@@ -72,6 +72,18 @@ export default {
       let chart = this.getChart(el);
       chart.setOption(option);
       chart.resize();
+    },
+
+    // 显示加载中
+    showLoading() {
+      this.charts.forEach(chart => chart.showLoading({
+        text: '加载中'
+      }));
+    },
+
+    // 隐藏加载中
+    hideLoading() {
+      this.charts.forEach(chart => chart.hideLoading());
     }
   }
 }

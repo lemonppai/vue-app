@@ -10,7 +10,7 @@ const loading = (type = 'show') => {
       loadingInstance = Loading.service({
         fullscreen: true,
         text: '加载中',
-        background: 'rgba(0,0,0,.3)'
+        background: 'rgba(255,255,255,.5)'
       });
     }
   }
