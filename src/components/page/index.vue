@@ -47,7 +47,7 @@ export default {
     }
   },
   data() {
-    console.log(this.pagination)
+    // console.log(this.pagination)
     return {
       height: 300
     }

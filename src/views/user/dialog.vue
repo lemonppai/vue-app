@@ -1,6 +1,6 @@
 <template>
   <el-dialog :title="title" width="400px" :visible.sync="visible" @close="close" @leave="leave">
-    <el-form :model="form" label-width="80px">
+    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <!-- <el-form-item label="活动名称">
         <el-input v-model="form.name" auto-complete="off" style="width: 300px;"></el-input>
       </el-form-item>
@@ -19,11 +19,11 @@
         <el-switch v-model="form.enable"></el-switch>
       </el-form-item> -->
 
-      <el-form-item label="日期">
+      <el-form-item label="日期" prop="date">
         <el-date-picker v-model="form.date" style="width: 280px;"></el-date-picker>
       </el-form-item>
 
-      <el-form-item label="姓名">
+      <el-form-item label="姓名" prop="name">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
 
@@ -54,6 +54,14 @@ export default {
         name: '',
         address: '',
         ...this.row
+      },
+      rules: {
+        date: [
+          { required: true, message: '日期必填' }
+        ],
+        name: [
+          { required: true, message: '姓名必填' }
+        ],
       }
     }
   },

@@ -50,7 +50,8 @@ export default {
   data() {
     return {
       isCollapse: false,
-      activeIndex: '/',
+      activeIndex: null,
+      loaded: false,
       // 菜单数据
       menuData: [
         {
@@ -106,12 +107,20 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.$route.path)
-    setTimeout(() => {
-      this.activeIndex = this.$route.path;
-      this.updateTitle(this.activeIndex);
-    }, 500)
+
   },
+
+  watch: {
+    '$route'() {
+      if (!this.loaded) {
+        this.loaded = true;
+
+        this.activeIndex = this.$route.path;
+        this.updateTitle(this.activeIndex);
+      }
+    }
+  },
+
   methods: {
     ...mapActions(['setTitle']),
     // 获取 title
