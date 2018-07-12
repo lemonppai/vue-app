@@ -14,18 +14,6 @@ export default new Router({
     },
 
     {
-      path: '/desktop',
-      name: 'desktop',
-      component: () => import('@/views/desktop.vue'),
-      children: [
-        {
-          path: 'message',
-          component: () => import('@/views/message.vue')
-        },
-      ]
-    },
-
-    {
       path: '/blank',
       name: 'blank',
       component: () => import('@/views/blank.vue')
@@ -40,7 +28,7 @@ export default new Router({
     {
       path: '/map',
       name: 'map',
-      component: () => import('@/views/Map.vue')
+      component: () => import('@/views/map')
     },
 
     {
@@ -50,15 +38,15 @@ export default new Router({
     },
 
     {
-      path: '/bar',
+      path: '/chart/bar',
       name: 'bar',
-      component: () => import('@/views/bar')
+      component: () => import('@/views/chart/bar')
     },
 
     {
-      path: '/line',
+      path: '/chart/line',
       name: 'line',
-      component: () => import('@/views/line')
+      component: () => import('@/views/chart/line')
     }
   ]
 })

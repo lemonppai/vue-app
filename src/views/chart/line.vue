@@ -53,6 +53,7 @@ export default {
     render(data) {
       console.log(data);
       let option = {
+        color: ['#3398DB'],
         xAxis: {
           type: "category",
           data: data.data.map(item => item.name)

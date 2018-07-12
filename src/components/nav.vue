@@ -81,12 +81,24 @@ export default {
           icon: 'menu',
           children: [
             {
-              url: '/bar',
+              url: '/chart/bar',
               title: '柱状图'
             },
             {
-              url: '/line',
+              url: '/chart/line',
               title: '折线图'
+            }
+          ]
+        },
+
+        {
+          url: '',
+          title: '地图',
+          icon: 'location',
+          children: [
+            {
+              url: '/map',
+              title: '数据分析'
             }
           ]
         }
