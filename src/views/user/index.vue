@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import DialogForm from '@/views/user/dialog';
 import Page from '@/components/page';
 import mixPage from '@/components/page/mixin';
+import DialogForm from './dialog';
 
 export default {
   mixins: [mixPage],
