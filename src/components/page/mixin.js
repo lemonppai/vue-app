@@ -30,8 +30,6 @@ export default {
     // 刷新列表
     refresh(pageIndex = this.pagination.pageIndex, pageSize = this.pagination.pageSize) {
 
-
-
       // console.log('submit');
       if (API[this.name]) {
         /* this.loading = true;
@@ -65,19 +63,15 @@ export default {
     },
 
     // 删除
-    handleDel(row) {
+    handleDel(event, row) {
       console.info('删除', row)
 
-      this.$confirm('此操作将无法恢复, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
+      this.$refs.page.showPopover(event.target, '此操作将无法恢复, 是否继续？', () => {
         API[this.name].del(row, data => {
           this.$message.success(data.message);
           this.refresh();
         })
-      }).catch(_ => {});
+      });
     },
 
     // 编辑

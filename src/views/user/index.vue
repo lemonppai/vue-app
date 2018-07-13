@@ -1,5 +1,5 @@
 <template>
-  <page :pagination="pagination" @refresh="refresh">
+  <page ref="page" :pagination="pagination" @refresh="refresh">
     <el-form slot="form" :inline="true" :model="form">
       <el-form-item label="日期">
         <!-- <el-input v-model="form.user" placeholder="审批人"></el-input> -->
@@ -49,7 +49,7 @@
         width="100">
         <template slot-scope="scope">
           <el-button @click="handleEdit(scope.row)" type="text">编辑</el-button>
-          <el-button class="color-danger" @click="handleDel(scope.row)" type="text">删除</el-button>
+          <el-button class="color-danger" @click="handleDel($event, scope.row)" type="text">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -69,6 +69,7 @@ export default {
   },
   data() {
     return {
+      visible2: false,
       form: {
         date: null,
         name: ''
