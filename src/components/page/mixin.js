@@ -66,7 +66,8 @@ export default {
     handleDel(event, row) {
       console.info('删除', row)
 
-      this.$refs.page.showPopover(event.target, '此操作将无法恢复, 是否继续？', () => {
+      let page = this.$refs.page || this.$children[0];
+      page.showPopover(event.target, '此操作将无法恢复, 是否继续？', () => {
         API[this.name].del(row, data => {
           this.$message.success(data.message);
           this.refresh();

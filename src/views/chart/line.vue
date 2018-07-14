@@ -16,8 +16,8 @@
 
 <script>
 import moment from 'moment';
-import ChartPage from "@/components/chartPage";
-import mixPage from "@/components/chartPage/mixin";
+import ChartPage from "@/components/chart-page";
+import mixPage from "@/components/chart-page/mixin";
 import * as API from "@/api";
 
 export default {

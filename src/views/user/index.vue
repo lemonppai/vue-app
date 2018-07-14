@@ -69,7 +69,6 @@ export default {
   },
   data() {
     return {
-      visible2: false,
       form: {
         date: null,
         name: ''
