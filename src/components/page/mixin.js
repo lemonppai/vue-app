@@ -28,7 +28,7 @@ export default {
 
   methods: {
     // 刷新列表
-    refresh(pageIndex = this.pagination.pageIndex, pageSize = this.pagination.pageSize) {
+    async refresh(pageIndex = this.pagination.pageIndex, pageSize = this.pagination.pageSize) {
 
       // console.log('submit');
       if (API[this.name]) {
@@ -41,15 +41,15 @@ export default {
         this.pagination.pageSize = pageSize;
 
         this.loading = true;
-        API[this.name].getList({
+        const data = await API[this.name].getList({
           ...this.form,
           pageIndex: this.pagination.pageIndex,
           pageSize: this.pagination.pageSize
-        }, data => {
-          this.loading = false;
-          this.pagination.total = data.data.total;
-          this.tableData = data.data.rows;
-        }).catch(() => this.loading = false);
+        }, null, () => this.loading = false);
+
+        // this.loading = false;
+        this.pagination.total = data.data.total;
+        this.tableData = data.data.rows;
       }
       else {
         console.warn('请定义页面name，或定义相应的API接口')

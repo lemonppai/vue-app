@@ -41,21 +41,25 @@ instance.interceptors.request.use(config => {
 // 添加响应拦截器
 instance.interceptors.response.use(res => {
   loadingEnd(res.config);
+  res.config.complete && res.config.complete();
   return res;
 }, err => {
   loadingEnd(err.config);
   Message.error(err.message);
+  res.config.complete && res.config.complete();
   return Promise.reject(err);
 })
 
 // 成功处理
-instance.succ = (callback = noop) => {
+instance.succ = (callback) => {
   return (res) => {
     if (res.data.status == 'ok') {
-      callback(res.data);
+      callback && callback(res.data);
+      return Promise.resolve(res.data);
     }
     else {
       Message.warn(res.msg);
+      return Promise.reject(res.data);
     }
   }
 }
