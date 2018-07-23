@@ -1,6 +1,6 @@
 import echarts from 'echarts';
 import * as API from '@/api';
-import { addEvent } from '@/utils';
+import { addEvent } from '@/lib/util';
 
 export default {
   data() {

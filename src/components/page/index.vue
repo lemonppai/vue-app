@@ -34,7 +34,7 @@
 
 <script>
 import PopoverConfirm from '@/components/popover-confirm';
-import { addEvent } from '@/utils';
+import { addEvent } from '@/lib/util';
 
 export default {
   props: {

@@ -13,7 +13,7 @@
 
 
 <script>
-import { addEvent } from '@/utils';
+import { addEvent } from '@/lib/util';
 
 export default {
   data() {

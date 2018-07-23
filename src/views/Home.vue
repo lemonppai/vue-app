@@ -121,7 +121,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { mapState, mapMutations, mapAtions, mapActions } from 'vuex';
-import loading from '@/utils/loading';
+import loading from '@/lib/loading';
 // import DialogForm from './dialog';
 
 export default {

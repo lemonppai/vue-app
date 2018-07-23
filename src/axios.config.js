@@ -3,9 +3,9 @@
  */
 
 import axios from 'axios';
-import loading from '@/utils/loading';
+import loading from '@/lib/loading';
 import { Message } from 'element-ui';
-import { noop } from '@/utils';
+import { noop } from '@/lib/util';
 import _ from 'lodash';
 
 const instance = axios.create({
