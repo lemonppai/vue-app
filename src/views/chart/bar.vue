@@ -40,14 +40,11 @@ export default {
   },
 
   methods: {
-    refresh() {
+    async refresh() {
       this.showLoading();
-      API[this.name]
-        .getChart(this.form, data => {
-          this.hideLoading();
-          this.render(data);
-        })
-        .catch(() => this.hideLoading());
+      const data = await API[this.name]
+        .getChart(this.form, null, () => this.hideLoading());
+      this.render(data);
     },
 
     render(data) {

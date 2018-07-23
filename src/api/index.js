@@ -50,24 +50,26 @@ export const user = {
 
 // 柱状图
 export const bar = {
-  getChart(param, success) {
+  getChart(param, success, complete) {
     return instance({
       method: 'get',
       url: '/bar/getChart',
       params: param,
       loading: false,
+      complete: complete
     }).then(instance.succ(success));
   }
 }
 
 // 折线图
 export const line = {
-  getChart(param, success) {
+  getChart(param, success, complete) {
     return instance({
       method: 'get',
       url: '/line/getChart',
       params: param,
       loading: false,
+      complete: complete
     }).then(instance.succ(success));
   }
 }
