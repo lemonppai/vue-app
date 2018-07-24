@@ -5,7 +5,7 @@
 import axios from 'axios';
 import loading from '@/lib/loading';
 import { Message } from 'element-ui';
-import { noop } from '@/lib/util';
+// import util from 'lemon-util';
 import _ from 'lodash';
 
 const instance = axios.create({
@@ -46,7 +46,7 @@ instance.interceptors.response.use(res => {
 }, err => {
   loadingEnd(err.config);
   Message.error(err.message);
-  res.config.complete && res.config.complete();
+  err.config.complete && err.config.complete();
   return Promise.reject(err);
 })
 

@@ -34,7 +34,7 @@
 
 <script>
 import PopoverConfirm from '@/components/popover-confirm';
-import { addEvent } from '@/lib/util';
+import util from 'lemon-util';
 
 export default {
   props: {
@@ -81,7 +81,7 @@ export default {
     init() {
       this.resize();
 
-      this.unbind = addEvent(window, 'resize', () => {
+      this.unbind = util.addEvent(window, 'resize', () => {
         this.resize();
       })
     },

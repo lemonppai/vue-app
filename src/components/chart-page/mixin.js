@@ -1,6 +1,6 @@
 import echarts from 'echarts';
 import * as API from '@/api';
-import { addEvent } from '@/lib/util';
+import util from 'lemon-util';
 
 export default {
   data() {
@@ -44,7 +44,7 @@ export default {
 
     init() {
       this.refresh();
-      this.unbind = addEvent(window, 'resize', () => {
+      this.unbind = util.addEvent(window, 'resize', () => {
         this.charts.forEach(chart => chart.resize());
       })
     },

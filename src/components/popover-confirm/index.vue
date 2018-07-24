@@ -13,7 +13,7 @@
 
 
 <script>
-import { addEvent } from '@/lib/util';
+import util from 'lemon-util';
 
 export default {
   data() {
@@ -52,7 +52,7 @@ export default {
       })
 
       this.unbind && this.unbind();
-      this.unbind = addEvent(document, 'click', (event) => {
+      this.unbind = util.addEvent(document, 'click', (event) => {
         if (event.target != el) {
           this.hidePopover();
           this.unbind();
