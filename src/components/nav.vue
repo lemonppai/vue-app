@@ -98,8 +98,12 @@ export default {
           icon: 'location',
           children: [
             {
-              url: '/map',
-              title: '数据分析'
+              url: '/map/migrate',
+              title: '迁徙图'
+            },
+            {
+              url: '/map/heat',
+              title: '热力图'
             }
           ]
         }

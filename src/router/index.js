@@ -19,9 +19,15 @@ export default new Router({
     },
 
     {
-      path: '/map',
-      name: 'map',
-      component: () => import('@/views/map')
+      path: '/map/migrate',
+      name: 'migrate',
+      component: () => import('@/views/map/migrate')
+    },
+
+    {
+      path: '/map/heat',
+      name: 'heat',
+      component: () => import('@/views/map/heat')
     },
 
     {
