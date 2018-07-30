@@ -4255,7 +4255,11 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-leaflet@^1.3.1:
+leaflet-echarts@^0.2.1:
+  version "0.2.1"
+  resolved "http://registry.npm.taobao.org/leaflet-echarts/download/leaflet-echarts-0.2.1.tgz#36dd23061ac171c89cf5f66fe6fb5e233bf18af3"
+
+leaflet@^1.3.3:
   version "1.3.3"
   resolved "http://registry.npm.taobao.org/leaflet/download/leaflet-1.3.3.tgz#5c8f2fd50e4a41ead93ab850dcd9e058811da9b9"
 
