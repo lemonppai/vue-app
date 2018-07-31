@@ -17,7 +17,7 @@ import axios from "axios";
 // console.log(leaflet);
 export default {
   mounted() {
-    var map = L.map("map").setView(L.latLng(37.550339, 104.114129), 4);
+    var map = L.map("map").setView(L.latLng(37.550339, 104.114129), 5);
     L.tileLayer(
       // 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
       //  'http://mt2.google.cn/vt/x={x}&y={y}&z={z}'
@@ -36,9 +36,9 @@ export default {
     var myChart = overlay.initECharts(overlay.getEchartsContainer());
     // console.log(overlay)
 
-    /* util.addEvent(window, "resize", () => {
+    this.unbind = util.addEvent(window, "resize", () => {
       myChart.resize();
-    }); */
+    });
 
     var option = {
       color: ["gold", "aqua", "lime"],
@@ -590,6 +590,10 @@ export default {
       ]
     };
     overlay.setOption(option);
+  },
+
+  beforeDestroy() {
+    this.unbind && this.unbind();
   }
 };
 </script>

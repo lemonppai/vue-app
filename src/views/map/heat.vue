@@ -36,7 +36,7 @@ export default {
     var myChart = overlay.initECharts(overlay.getEchartsContainer());
     // console.log(overlay)
 
-    util.addEvent(window, "resize", () => {
+    this.unbind = util.addEvent(window, "resize", () => {
       myChart.resize();
     });
 
@@ -307,6 +307,10 @@ export default {
       ]
     };
     overlay.setOption(option);
+  },
+
+  beforeDestroy() {
+    this.unbind && this.unbind();
   }
 };
 </script>
