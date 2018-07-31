@@ -42,6 +42,15 @@
         label="地址"
         min-width="300">
       </el-table-column>
+      <el-table-column
+        prop="enable"
+        label="启用"
+        min-width="300">
+        <template slot-scope="scope">
+          <!-- {{scope}} -->
+          <el-switch :value="scope.row.enable" @change="handleSwitch(scope.row, scope.row.enable)"></el-switch>
+        </template>
+      </el-table-column>
 
       <el-table-column
         fixed="right"

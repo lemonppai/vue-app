@@ -40,7 +40,6 @@ export default {
       myChart.resize();
     }); */
 
-
     var option = {
       color: ["gold", "aqua", "lime"],
       title: {

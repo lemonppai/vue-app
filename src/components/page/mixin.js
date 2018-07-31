@@ -80,6 +80,22 @@ export default {
       console.info('编辑', row)
       this.visible = true;
       this.row = row;
+    },
+
+    // 切换开关
+    handleSwitch(row, val) {
+      console.info('切换开关', row)
+      // row.enable = !row.enable;
+
+      let page = this.$refs.page || this.$children[0];
+      page.showPopover(event.target, '是否启用？', () => {
+        API[this.name].enable({
+          enable: !val
+        }, data => {
+          this.$message.success(data.message);
+          this.refresh();
+        })
+      });
     }
   }
 }

@@ -45,6 +45,16 @@ export const user = {
       data: param,
       loading: true,
     }).then(instance.succ(success));
+  },
+
+  // 启用
+  enable(param, success) {
+    return instance({
+      method: 'post',
+      url: '/user/enable',
+      data: param,
+      loading: true,
+    }).then(instance.succ(success));
   }
 };
 
