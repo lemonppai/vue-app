@@ -71,6 +71,7 @@ import mixPage from '@/components/page/mixin';
 import DialogForm from './dialog';
 
 export default {
+  name: 'user',
   mixins: [mixPage],
   components: {
     DialogForm,

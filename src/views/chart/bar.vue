@@ -21,6 +21,7 @@ import mixPage from "@/components/chart-page/mixin";
 import * as API from "@/api";
 
 export default {
+  name: 'bar',
   mixins: [mixPage],
   components: {
     ChartPage

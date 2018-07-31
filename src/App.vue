@@ -24,7 +24,9 @@
           </el-breadcrumb>
         </el-header>
         <el-main style="padding: 10px;">
-          <router-view/>
+          <keep-alive :include="include">
+            <router-view />
+          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
@@ -42,18 +44,39 @@ export default {
     IsonNav,
     IsonLogo
   },
+  data() {
+    return {
+      // 缓存列表
+      include: []
+    }
+  },
   computed: {
     ...mapState(['titles'])
   },
   methods: {
-    ...mapActions(['setTitle'])
+    ...mapActions(['setTitle']),
+
+    // 添加页面缓存
+    addCache(name) {
+      if (this.include.indexOf(name) == -1) {
+        this.include.push(name);
+      }
+    },
+
+    // 删除页面缓存
+    removeCache(name) {
+      let n = this.include.indexOf(name);
+      if (n > -1) {
+        this.include.splice(n, 1);
+      }
+    }
   },
   /* mounted() {
     console.log(this.$route)
   }, */
   watch: {
-    '$route.query'() {
-      // console.log(this.$route)
+    '$route'() {
+      this.addCache(this.$route.name);
     }
   }
 }
