@@ -24,9 +24,11 @@
           </el-breadcrumb>
         </el-header>
         <el-main style="padding: 10px;">
-          <keep-alive :include="include">
-            <router-view />
-          </keep-alive>
+          <transition name="page" mode="out-in">
+            <keep-alive :include="include">
+              <router-view />
+            </keep-alive>
+          </transition>
         </el-main>
       </el-container>
     </el-container>
@@ -38,6 +40,7 @@
 import IsonNav from './components/nav';
 import IsonLogo from './components/logo';
 import { mapState, mapActions } from 'vuex';
+import util from 'lemon-util';
 
 export default {
   components: {
@@ -77,6 +80,10 @@ export default {
   watch: {
     '$route'() {
       this.addCache(this.$route.name);
+
+      this.$nextTick(() => {
+        // util.dispatchEvent('resize', window);
+      });
     }
   }
 }
@@ -101,4 +108,13 @@ export default {
     }
   }
 } */
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s, transform .5s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+  transform: translateY(-2%);
+}
+
 </style>

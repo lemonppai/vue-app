@@ -13,7 +13,7 @@
     "element-ui": "^2.4.3",
     "leaflet": "^1.3.3",
     "leaflet-echarts": "^0.2.1",
-    "lemon-util": "^0.1.3",
+    "lemon-util": "^0.1.5",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "normalize.css": "^8.0.0",
