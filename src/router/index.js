@@ -1,21 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      path: '*',
+      component: () => import('@/views/404')
+    },
+
+    {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('@/views/home')
     },
 
     {
       path: '/blank',
       name: 'blank',
-      component: () => import('@/views/blank.vue')
+      component: () => import('@/views/blank')
     },
 
     {
