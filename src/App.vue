@@ -13,23 +13,33 @@
         <router-view/>
       </el-main> -->
 
-      <el-aside width="260px">
-        <ison-logo></ison-logo>
-        <ison-nav style="height: calc(100% - 60px);"></ison-nav>
-      </el-aside>
+
       <el-container>
-        <el-header style="height: 46px; padding: 16px 12px; background-color: #f9f9f9;">
-          <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item v-for="(item,key) in titles" :key="key">{{ item }}</el-breadcrumb-item>
-          </el-breadcrumb>
+        <el-header style="padding: 0; height: 50px;">
+          <ison-logo></ison-logo>
         </el-header>
-        <el-main style="padding: 10px;">
-          <transition name="page" mode="out-in">
-            <keep-alive :include="include">
-              <router-view />
-            </keep-alive>
-          </transition>
-        </el-main>
+
+        <el-container>
+          <el-aside width="250px">
+            <!-- <ison-logo></ison-logo> -->
+            <ison-nav style="height: 100%"></ison-nav>
+          </el-aside>
+          <el-container style="padding: 0;">
+            <el-header style="height: 46px; padding: 16px 12px; background-color: #f9f9f9;">
+              <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item v-for="(item,key) in titles" :key="key">{{ item }}</el-breadcrumb-item>
+              </el-breadcrumb>
+            </el-header>
+
+            <el-main style="padding: 10px;">
+              <transition name="page" mode="out-in">
+                <keep-alive :include="include">
+                  <router-view />
+                </keep-alive>
+              </transition>
+            </el-main>
+          </el-container>
+        </el-container>
       </el-container>
     </el-container>
   </div>

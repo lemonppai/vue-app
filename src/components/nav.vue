@@ -1,9 +1,6 @@
 <template>
   <el-menu
     :router="true"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
     :default-active="activeIndex" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" @select="handleSelect" :collapse="isCollapse">
     <!-- <el-menu-item index="/">
       <i class="el-icon-menu"></i>

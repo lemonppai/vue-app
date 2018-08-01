@@ -73,7 +73,7 @@ export default {
   methods: {
     resize() {
       let rect = this.$refs.tableWrap.getBoundingClientRect();
-      let h = document.documentElement.clientHeight - rect.top - 50;
+      let h = document.documentElement.clientHeight - rect.top - 64;
       // console.log(h)
       this.height = h;
     },
@@ -82,7 +82,9 @@ export default {
       this.resize();
 
       this.unbind = util.addEvent(window, 'resize', () => {
-        this.resize();
+        if (document.body.contains(this.$refs.tableWrap)) {
+          this.resize();
+        }
       })
     },
 
