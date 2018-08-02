@@ -47,7 +47,7 @@
       <el-table-column
         prop="enable"
         label="启用"
-        min-width="300">
+        min-width="100">
         <template slot-scope="scope">
           <!-- {{scope}} -->
           <el-switch :value="scope.row.enable" @change="handleSwitch(scope.row, scope.row.enable)"></el-switch>

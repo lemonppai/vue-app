@@ -1,10 +1,10 @@
 <template>
-  <div class="header">
+  <div class="header" style="-webkit-app-region: drag">
     <div class="logo">
       LOGO
     </div>
 
-    <div style="float: right; margin: 16px 12px;">
+    <div class="user-info">
       <el-dropdown size="medium" trigger="click" style="color: #fff;">
         <span class="el-dropdown-link">
           用户名<i class="el-icon-arrow-down el-icon--right"></i>
@@ -25,7 +25,7 @@
 
 .header {
   height: 50px;
-  border-right: solid 1px #e6e6e6;
+  // border-right: solid 1px #e6e6e6;
   color: #fff;
   background-color: #545c64;
 
@@ -36,6 +36,12 @@
     font-size: 20px;
     // text-align: center;
     text-indent: 1em;
+  }
+
+  .user-info {
+    float: right;
+    margin: 16px 12px;
+    -webkit-app-region: no-drag;
   }
 }
 </style>
