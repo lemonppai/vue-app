@@ -1,4 +1,5 @@
 import * as API from '@/api';
+import util from 'lemon-util';
 
 export default {
   data() {
@@ -10,6 +11,8 @@ export default {
       row: null,
       form: {
       },
+      // 表格高度
+      tableHeight: null,
       // 分页信息
       pagination: {
         total: 0,
@@ -24,6 +27,17 @@ export default {
   mounted() {
     // this.init();
     this.refresh();
+    this.resize();
+
+    this.unbind = util.addEvent(window, 'resize', () => {
+      if (document.body.contains(this.$refs.table.$el)) {
+        this.resize();
+      }
+    })
+  },
+
+  beforeDestroy() {
+    this.unbind && this.unbind();
   },
 
   methods: {
@@ -54,6 +68,17 @@ export default {
       else {
         console.warn('请定义页面name，或定义相应的API接口')
       }
+    },
+
+    // 获取表格高度
+    getTableHeight() {
+      let rect = util.getClientRect(this.$refs.table.$el);
+      let h = document.documentElement.clientHeight - rect.top - 60;
+      return Math.max(h, 200);
+    },
+
+    resize() {
+      this.tableHeight = this.getTableHeight();
     },
 
     // 新增

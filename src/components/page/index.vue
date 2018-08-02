@@ -13,7 +13,7 @@
     </el-row>
 
     <div class="page-main">
-      <div ref="tableWrap" :style="{ height: height + 'px' }">
+      <div>
         <slot name="table"></slot>
 
         <el-pagination
@@ -63,7 +63,7 @@ export default {
   },
 
   mounted() {
-    this.init();
+    // this.init();
   },
 
   beforeDestroy() {

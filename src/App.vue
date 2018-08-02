@@ -16,7 +16,7 @@
 
       <el-container>
         <el-header style="padding: 0; height: 50px;">
-          <ison-logo></ison-logo>
+          <ison-header></ison-header>
         </el-header>
 
         <el-container>
@@ -48,14 +48,14 @@
 
 <script>
 import IsonNav from './components/nav';
-import IsonLogo from './components/logo';
+import IsonHeader from './components/header';
 import { mapState, mapActions } from 'vuex';
 import util from 'lemon-util';
 
 export default {
   components: {
     IsonNav,
-    IsonLogo
+    IsonHeader
   },
   data() {
     return {
