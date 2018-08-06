@@ -63,7 +63,7 @@ export default {
           icon: 'setting',
           children: [
             {
-              url: '/user',
+              url: '/apps/user',
               title: '用户配置'
             },
             /* {
@@ -79,11 +79,11 @@ export default {
           icon: 'picture',
           children: [
             {
-              url: '/chart/bar',
+              url: '/apps/chart/bar',
               title: '柱状图'
             },
             {
-              url: '/chart/line',
+              url: '/apps/chart/line',
               title: '折线图'
             }
           ]
@@ -95,11 +95,11 @@ export default {
           icon: 'location',
           children: [
             {
-              url: '/map/migrate',
+              url: '/apps/map/migrate',
               title: '迁徙图'
             },
             {
-              url: '/map/heat',
+              url: '/apps/map/heat',
               title: '热力图'
             }
           ]

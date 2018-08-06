@@ -214,7 +214,7 @@ export default {
 <style lang="scss">
 .home {
   // background-color: #ccc;
-
+  padding: 10px;
   .line {
     text-align: center;
   }

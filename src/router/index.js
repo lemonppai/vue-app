@@ -17,39 +17,46 @@ export default new Router({
     },
 
     {
+      path: '/apps',
+      name: 'apps',
+      component: () => import('@/views/apps'),
+      children: [
+        {
+          path: 'map/migrate',
+          name: 'migrate',
+          component: () => import('@/views/map/migrate')
+        },
+
+        {
+          path: 'map/heat',
+          name: 'heat',
+          component: () => import('@/views/map/heat')
+        },
+
+        {
+          path: 'user',
+          name: 'user',
+          component: () => import('@/views/user')
+        },
+
+        {
+          path: 'chart/bar',
+          name: 'bar',
+          component: () => import('@/views/chart/bar')
+        },
+
+        {
+          path: 'chart/line',
+          name: 'line',
+          component: () => import('@/views/chart/line')
+        }
+      ]
+    },
+
+    {
       path: '/blank',
       name: 'blank',
       component: () => import('@/views/blank')
     },
-
-    {
-      path: '/map/migrate',
-      name: 'migrate',
-      component: () => import('@/views/map/migrate')
-    },
-
-    {
-      path: '/map/heat',
-      name: 'heat',
-      component: () => import('@/views/map/heat')
-    },
-
-    {
-      path: '/user',
-      name: 'user',
-      component: () => import('@/views/user')
-    },
-
-    {
-      path: '/chart/bar',
-      name: 'bar',
-      component: () => import('@/views/chart/bar')
-    },
-
-    {
-      path: '/chart/line',
-      name: 'line',
-      component: () => import('@/views/chart/line')
-    }
   ]
 })
