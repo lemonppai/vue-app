@@ -119,13 +119,4 @@ export default {
 .el-table__body-wrapper {
   height: calc(100% - 36px);
 }
-
-.color-danger {
-  color: #F56C6C;
-
-  &:hover, &:active, &:focus {
-    // color: lighten(#F56C6C);
-    color: #F56C6C;
-  }
-}
 </style>

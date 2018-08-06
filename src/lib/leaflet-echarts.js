@@ -267,6 +267,14 @@
             return;
           }
 
+          // 兼容高版本leaflet滚轮放大/缩小数值
+          if (delta > 0) {
+            delta = 1;
+          }
+          else {
+            delta = -1;
+          }
+
           if (map.options.scrollWheelZoom === 'center') {
             map.setZoom(zoom + delta);
           } else {
