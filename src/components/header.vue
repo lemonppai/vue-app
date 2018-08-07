@@ -5,12 +5,23 @@
     </div>
 
     <div class="nav-tabs">
-      <div :class="['nav-tabs-item', $route.name == item.code ? 'active' : null]" v-for="(item,key) in tabs" :key="key" @click="handleClick(item)">
+      <div :class="['nav-tabs-item', activeName == item.code ? 'active' : null]" v-for="(item,key) in tabs" :key="key" @click="handleClick(item)">
         {{ item.label }}
       </div>
     </div>
 
     <div class="user-info">
+      <el-dropdown size="medium" placement="bottom" trigger="click" style="color: #fff; margin-right: 10px;">
+        <span class="el-dropdown-link">
+          <i class="el-icon-menu"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>我的应用</el-dropdown-item>
+          <el-dropdown-item>系统监控</el-dropdown-item>
+          <el-dropdown-item>管理系统</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+
       <el-dropdown size="medium" trigger="click" style="color: #fff;">
         <span class="el-dropdown-link">
           用户名<i class="el-icon-arrow-down el-icon--right"></i>
@@ -26,40 +37,65 @@
 
 <script>
 import router from '@/router';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
     return {
+      activeName: null,
       tabs: [
         {
           label: '首页',
           code: 'home',
-          src: '/'
+          path: '/'
         },
         {
           label: '我的应用',
           code: 'apps',
-          src: '/apps'
+          path: '/apps/main'
         },
         {
           label: '系统监控',
-          code: 'system',
+          code: 'monitor',
+          path: '/monitor'
         },
         {
           label: '管理系统',
           code: 'manage',
+          path: '/manage'
         }
       ]
     }
   },
+
+  computed: {
+    ...mapState(['currentPaths'])
+  },
+
+  watch: {
+    '$route.name'() {
+      // console.log(this.$route.matched[0])
+      this.activeName = this.$route.matched[0].name;
+    }
+  },
+
   methods: {
     handleClick(item) {
       // console.log(code);
       // this.activeName = item.code;
+      // console.log(this.$route)
+      // console.log(this.currentPaths, this.currentPaths[ item.code ] )
 
-      router.push({
-        path: item.src
-      });
+      if (item.code != 'apps') {
+        router.push({
+          path: this.currentPaths[ item.code ] || item.path
+        });
+      }
+      else {
+        router.push({
+          path: item.path
+        });
+      }
     }
   }
 }

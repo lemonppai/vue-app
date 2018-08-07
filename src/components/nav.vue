@@ -44,86 +44,37 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
+  props: {
+    menuData: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
       isCollapse: false,
       activeIndex: null,
-      loaded: false,
-      // 菜单数据
-      menuData: [
-        {
-          url: '/',
-          title: '首页',
-          icon: 'menu',
-          children: []
-        },
-        {
-          url: '',
-          title: '管理平台',
-          icon: 'setting',
-          children: [
-            {
-              url: '/apps/user',
-              title: '用户配置'
-            },
-            /* {
-              url: '/map',
-              title: '地图'
-            }, */
-          ]
-        },
-
-        {
-          url: '',
-          title: '图表',
-          icon: 'picture',
-          children: [
-            {
-              url: '/apps/chart/bar',
-              title: '柱状图'
-            },
-            {
-              url: '/apps/chart/line',
-              title: '折线图'
-            }
-          ]
-        },
-
-        {
-          url: '',
-          title: '地图',
-          icon: 'location',
-          children: [
-            {
-              url: '/apps/map/migrate',
-              title: '迁徙图'
-            },
-            {
-              url: '/apps/map/heat',
-              title: '热力图'
-            }
-          ]
-        }
-      ]
+      loaded: false
     };
   },
   mounted() {
-
+    // this.loaded = true;
+    this.activeIndex = this.$route.path;
+    this.updateTitle(this.activeIndex);
   },
 
-  watch: {
+ /*  watch: {
     '$route'() {
       if (!this.loaded) {
         this.loaded = true;
-
         this.activeIndex = this.$route.path;
         this.updateTitle(this.activeIndex);
       }
     }
-  },
+  }, */
 
   methods: {
-    ...mapActions(['setTitle']),
+    ...mapActions(['setTitle', 'setCurrentPath']),
     // 获取 title
     getTitle(url = null) {
       for (let i = 0; i < this.menuData.length; i++) {
@@ -135,11 +86,27 @@ export default {
           if (item2.url == url) return [item.title, item2.title];
         }
       }
+      return [];
     },
 
     updateTitle(url) {
-      let title = this.getTitle(url);
-      this.setTitle(title);
+      let titles = this.getTitle(url);
+      // console.log(url)
+
+      if (titles.length > 0) {
+        switch (this.$route.matched[0].name) {
+          case 'apps':
+            titles.unshift('我的应用');
+            break;
+          case 'monitor':
+            titles.unshift('系统监控');
+            break;
+          case 'manage':
+            titles.unshift('管理系统');
+            break;
+        }
+      }
+      this.setTitle(titles);
     },
 
     handleOpen(key, keyPath) {
@@ -152,6 +119,14 @@ export default {
       // console.log(key, keyPath);
       // console.log(this.$route)
       // console.log(this.getTitle(key));
+      let name = this.$route.matched[0].name;
+      let subName = this.$route.matched[1] ? this.$route.matched[1].name : null;
+
+      this.setCurrentPath({
+        name: name,
+        subName: subName,
+        path: key
+      });
       this.updateTitle(key);
     }
   }

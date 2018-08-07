@@ -10,5 +10,10 @@ export default {
   // 设置页面标题
   setTitle({ commit }, val) {
     commit(types.SETPAGETITLE, val);
+  },
+
+  // 设置当前菜单路径
+  setCurrentPath({ commit }, vals) {
+    commit(types.SETCURRENTPATH, vals);
   }
 }
