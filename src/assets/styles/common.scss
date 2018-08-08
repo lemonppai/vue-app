@@ -43,3 +43,12 @@
     clear: both;
   }
 }
+
+// 页面切换
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s, transform .5s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+  transform: translateY(-2%);
+}

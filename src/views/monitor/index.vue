@@ -2,7 +2,7 @@
   <el-container>
     <el-aside width="250px">
       <!-- <ison-logo></ison-logo> -->
-      <ison-nav style="height: 100%" :menu-data="menuData"></ison-nav>
+      <ison-nav ref="nav" style="height: 100%" :menu-data="menuData"></ison-nav>
     </el-aside>
     <el-container style="padding: 0;">
       <el-header style="height: 46px; padding: 16px 12px; background-color: #f9f9f9;">

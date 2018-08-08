@@ -1,181 +1,63 @@
 <template>
   <div class="home">
-    <!-- <img src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <el-row :gutter="20">
+      <el-col :span="6">
+        <panel title="上周地市量统计">
+          <div class="subtitle">
+            占所有小区的比例
+          </div>
 
-    <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="活动名称">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item label="活动区域">
-        <el-select v-model="form.region" placeholder="请选择活动区域">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="活动时间">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-        </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="即时配送">
-        <el-switch v-model="form.delivery"></el-switch>
-      </el-form-item>
-      <el-form-item label="活动性质">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-          <el-checkbox label="地推活动" name="type"></el-checkbox>
-          <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-          <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="特殊资源">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="线上品牌商赞助"></el-radio>
-          <el-radio label="线下场地免费"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="活动形式">
-        <el-input type="textarea" v-model="form.desc"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
-      </el-form-item>
-    </el-form>
+          <div ref="ratio" style="height: 300px;"></div>
+        </panel>
+      </el-col>
 
-    <el-row>
-      <el-button plain>朴素按钮</el-button>
-      <el-button type="primary" plain>主要按钮</el-button>
-      <el-button type="success" plain>成功按钮</el-button>
-      <el-button type="info" plain>信息按钮</el-button>
-      <el-button type="warning" plain>警告按钮</el-button>
-      <el-button type="danger" plain>危险按钮</el-button>
+      <el-col :span="6">
+        <panel title="全省GIS地图">
+          <div ref="gis" style="height: 316px;"></div>
+        </panel>
+      </el-col>
+
+      <el-col :span="12">
+        <panel title="工单查询">
+          <div ref="work" style="height: 316px;"></div>
+        </panel>
+      </el-col>
+
+      <el-col :span="6">
+        <panel title="警告">
+          <div ref="warn" style="height: 316px;"></div>
+        </panel>
+      </el-col>
+
+      <el-col :span="18">
+        <panel title="上周调整工单统计">
+          <div ref="warn" style="height: 316px;"></div>
+        </panel>
+      </el-col>
     </el-row>
-
-    <div style="padding: 10px;">
-      <!-- {{ count }} -->
-
-      <!-- <el-button type="primary" @click="increment(10)">累加</el-button> -->
-
-      <!-- <el-button type="primary" @click="visible = true">打开弹窗</el-button> -->
-
-      <el-button type="primary" @click="showLoading">加载中</el-button>
-
-      <!-- <dialog-form :visible.sync="visible"></dialog-form> -->
-    </div>
-
-    <div>
-      <el-table
-        v-loading="loading"
-        :data="tableData"
-        border
-        height="300"
-        style="width: 100%;">
-        <el-table-column
-          fixed
-          prop="date"
-          label="日期"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址"
-          min-width="300">
-        </el-table-column>
-
-        <el-table-column
-          fixed="right"
-          label="操作"
-          width="100">
-          <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text">查看</el-button>
-            <el-button type="text">编辑</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-
-      <el-pagination
-        :current-page="2"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
-        style="text-align: right; padding: 6px;"
-      >
-      </el-pagination>
-    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import echarts from 'echarts';
+import 'echarts/map/js/province/jiangsu';
+import util from 'lemon-util';
 import { mapState, mapMutations, mapAtions, mapActions } from 'vuex';
 import loading from '@/lib/loading';
 // import DialogForm from './dialog';
+import Panel from '@/components/panel';
 
 export default {
   name: 'home',
   components: {
     // HelloWorld
+    Panel
   },
   data() {
     return {
-      visible: false,
-      loading: false,
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      chartObjs: []
     };
   },
   computed: {
@@ -184,39 +66,170 @@ export default {
   mounted() {
     // console.log(this.increment);
 
-    console.log(this.$store);
+    // console.log(this.$store);
+
+    this.renderRatio();
+    this.renderGIS();
+    this.renderWork();
+
+    this.unbind = util.addEvent(window, 'resize', () => {
+      this.chartObjs.forEach(chart => {
+        chart.resize();
+      });
+    })
   },
   methods: {
-    ...mapActions(['increment']),
-    onSubmit() {
-      // console.log('submit!');
-      console.log(this.form);
+    renderRatio() {
+      const chart = echarts.init(this.$refs.ratio);
+      chart.setOption({
+        title : {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+      });
+
+      this.chartObjs.push(chart);
     },
 
-    handleClick(row) {
-      console.log(row);
+    renderGIS() {
+      const chart = echarts.init(this.$refs.gis);
+      chart.setOption({
+        tooltip: { trigger: 'item', formatter: '{b}' },
+        series: [
+          {
+              name: '江苏',
+              type: 'map',
+              mapType: '江苏',
+              roam: true,
+              scaleLimit: {
+                  min: 1, max: 10
+              },
+              //selectedMode: 'multiple',
+              label: {
+                  normal: {
+                      show: true,
+                      textStyle: {
+                          color: '#fff'
+                      }
+                  },
+                  emphasis: {
+                      show: true,
+                      textStyle: {
+                          color: '#fff',
+                          fontSize: 16,
+                          fontWeight: 'bold'
+                      }
+                  }
+              },
+              itemStyle: {
+                  normal: {
+                      borderColor: '#fff',
+                      areaColor: '#389BB7'
+                  },
+                  emphasis: {
+                      areaColor: '#ff7d36',
+                      borderWidth: 0
+                  }
+              },
+              data: [
+                  { name: '南京市', selected: true }
+              ]
+          }
+        ]
+      });
+
+      this.chartObjs.push(chart);
     },
 
-    showLoading() {
-      loading();
+    renderWork() {
+      const chart = echarts.init(this.$refs.work);
+      chart.setOption({
+          color: ['#3398DB'],
+          tooltip : {
+              trigger: 'axis',
+              axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                  type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+              }
+          },
+          grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
+          },
+          xAxis : [
+              {
+                  type : 'category',
+                  data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                  axisTick: {
+                      alignWithLabel: true
+                  }
+              }
+          ],
+          yAxis : [
+              {
+                  type : 'value'
+              }
+          ],
+          series : [
+              {
+                  name:'直接访问',
+                  type:'bar',
+                  barWidth: '60%',
+                  data:[10, 52, 200, 334, 390, 330, 220]
+              }
+          ]
+      });
 
-      setTimeout(() => {
-        loading('close');
-      }, 3000)
+      this.chartObjs.push(chart);
     }
-  },
-  components: {
-    // DialogForm
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home {
   // background-color: #ccc;
   padding: 10px;
   .line {
     text-align: center;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #aaa;
   }
 }
 </style>

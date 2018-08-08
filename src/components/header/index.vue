@@ -137,7 +137,7 @@ export default {
     .nav-tabs-item {
       display: inline-block;
       position: relative;
-      padding: 4px 10px;
+      margin: 4px 10px;
       cursor: pointer;
 
       &:after {
@@ -149,14 +149,15 @@ export default {
         // width: 100%;
         height: 2px;
         background-color: #fff;
-        // transition: left .2s, right .2s;
+        opacity: 0;
+        transition: .2s;
       }
 
       &.active {
-
         &:after {
           left: 0;
           right: 0;
+          opacity: 1;;
         }
       }
     }

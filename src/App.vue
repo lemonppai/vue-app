@@ -56,13 +56,4 @@ export default {
     }
   }
 } */
-
-.page-enter-active, .page-leave-active {
-  transition: opacity .5s, transform .5s;
-}
-.page-enter, .page-leave-to {
-  opacity: 0;
-  transform: translateY(-2%);
-}
-
 </style>
