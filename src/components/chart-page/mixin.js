@@ -16,6 +16,10 @@ export default {
     }
   },
 
+  activated() {
+    this.resize();
+  },
+
   mounted() {
     this.init();
   },
@@ -47,12 +51,16 @@ export default {
       let i = 0;
       this.unbind = util.addEvent(window, 'resize', () => {
         if (++i % 2 == 0) return;
-        this.charts.forEach(chart => {
-          if (!chart._dom.hidden && document.body.contains(chart._dom)) {
-            chart.resize()
-          }
-        });
+        this.resize();
       })
+    },
+
+    resize() {
+      this.charts.forEach(chart => {
+        if (!chart._dom.hidden && document.body.contains(chart._dom)) {
+          chart.resize()
+        }
+      });
     },
 
     refresh() {

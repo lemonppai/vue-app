@@ -57,12 +57,17 @@ export default {
   },
   data() {
     return {
-      chartObjs: []
+      charts: []
     };
   },
   computed: {
     ...mapState(['count'])
   },
+
+  activated() {
+    this.resize();
+  },
+
   mounted() {
     // console.log(this.increment);
 
@@ -73,12 +78,17 @@ export default {
     this.renderWork();
 
     this.unbind = util.addEvent(window, 'resize', () => {
-      this.chartObjs.forEach(chart => {
-        chart.resize();
-      });
+      this.resize();
     })
   },
+
   methods: {
+    resize() {
+      this.charts.forEach(chart => {
+        chart.resize();
+      });
+    },
+
     renderRatio() {
       const chart = echarts.init(this.$refs.ratio);
       chart.setOption({
@@ -120,7 +130,7 @@ export default {
         ]
       });
 
-      this.chartObjs.push(chart);
+      this.charts.push(chart);
     },
 
     renderGIS() {
@@ -170,7 +180,7 @@ export default {
         ]
       });
 
-      this.chartObjs.push(chart);
+      this.charts.push(chart);
     },
 
     renderWork() {
@@ -213,7 +223,7 @@ export default {
           ]
       });
 
-      this.chartObjs.push(chart);
+      this.charts.push(chart);
     }
   }
 }

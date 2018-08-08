@@ -24,6 +24,10 @@ export default {
     }
   },
 
+  activated() {
+    // this.resize();
+  },
+
   mounted() {
     // this.init();
     this.refresh();
