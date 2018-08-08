@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import router from '@/router';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -72,11 +71,17 @@ export default {
     ...mapState(['currentPaths'])
   },
 
-  watch: {
-    '$route.name'() {
-      // console.log(this.$route.matched[0])
+  mounted() {
+    /* this.$nextTick(() => {
+      this.$nextTick(() => {
+        this.activeName = this.$route.matched[0].name;
+      });
+    }); */
+
+    this.$router.onReady(() => {
+      // console.log(1);
       this.activeName = this.$route.matched[0].name;
-    }
+    });
   },
 
   methods: {
@@ -87,15 +92,17 @@ export default {
       // console.log(this.currentPaths, this.currentPaths[ item.code ] )
 
       if (item.code != 'apps') {
-        router.push({
+        this.$router.push({
           path: this.currentPaths[ item.code ] || item.path
         });
       }
       else {
-        router.push({
+        this.$router.push({
           path: item.path
         });
       }
+
+      this.activeName = item.code;
     }
   }
 }

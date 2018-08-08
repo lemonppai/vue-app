@@ -1,7 +1,7 @@
 <template>
   <div style="padding: 10px;">
     <el-row :gutter="12">
-      <el-col v-for="(item,key) in apps" :key="key" :xs="12" :sm="8" :md="6" :lg="4">
+      <el-col v-for="(item,key) in apps" :key="key" :xs="12" :sm="8" :md="6" :xl="4">
         <el-card shadow="hover">
           <header @click="handleClick(item)">
             {{ item.title }}
@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import router from '@/router';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -39,7 +38,7 @@ export default {
 
   methods: {
     handleClick(item) {
-      router.push({
+      this.$router.push({
         path: this.currentPaths.apps[ item.code ] || item.path
       });
     }
