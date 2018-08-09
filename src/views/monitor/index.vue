@@ -92,9 +92,15 @@ export default {
       ]
     }
   },
+
+  activated() {
+    this.$refs.nav.handleSelect(this.$route.path);
+  },
+
   computed: {
     ...mapState(['titles'])
   },
+
   methods: {
     ...mapActions(['setTitle']),
 
