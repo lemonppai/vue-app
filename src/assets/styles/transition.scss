@@ -1,0 +1,8 @@
+// 微动画
+.tiny-enter-active, .tiny-leave-active {
+  transition: opacity .5s, transform .5s;
+}
+.tiny-enter, .tiny-leave-to {
+  opacity: 0;
+  transform: translateY(-2%);
+}

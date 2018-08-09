@@ -16,7 +16,7 @@
 
       <el-container>
         <el-header style="padding: 0; height: 50px;">
-          <ison-header></ison-header>
+          <v-header></v-header>
         </el-header>
         <keep-alive>
           <router-view></router-view>
@@ -28,11 +28,11 @@
 
 
 <script>
-import IsonHeader from './components/header';
+import VHeader from './components/header';
 
 export default {
   components: {
-    IsonHeader
+    VHeader
   }
 }
 </script>

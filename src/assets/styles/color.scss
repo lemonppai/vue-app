@@ -1,0 +1,9 @@
+// 颜色
+.color-danger {
+  color: #F56C6C !important;
+
+  &:hover, &:active, &:focus {
+    // color: lighten(#F56C6C);
+    color: #F56C6C !important;
+  }
+}
