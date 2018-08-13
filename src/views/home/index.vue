@@ -2,37 +2,37 @@
   <div class="home">
     <el-row :gutter="20">
       <el-col :span="6">
-        <panel title="上周地市量统计">
+        <v-panel title="上周地市量统计">
           <div class="subtitle">
             占所有小区的比例
           </div>
 
           <div ref="ratio" style="height: 300px;"></div>
-        </panel>
+        </v-panel>
       </el-col>
 
       <el-col :span="6">
-        <panel title="全省GIS地图">
+        <v-panel title="全省GIS地图">
           <div ref="gis" style="height: 316px;"></div>
-        </panel>
+        </v-panel>
       </el-col>
 
       <el-col :span="12">
-        <panel title="工单查询">
+        <v-panel title="工单查询">
           <div ref="work" style="height: 316px;"></div>
-        </panel>
+        </v-panel>
       </el-col>
 
       <el-col :span="6">
-        <panel title="警告">
+        <v-panel title="警告">
           <div ref="warn" style="height: 316px;"></div>
-        </panel>
+        </v-panel>
       </el-col>
 
       <el-col :span="18">
-        <panel title="上周调整工单统计">
+        <v-panel title="上周调整工单统计">
           <div ref="warn" style="height: 316px;"></div>
-        </panel>
+        </v-panel>
       </el-col>
     </el-row>
   </div>
@@ -47,13 +47,13 @@ import util from 'lemon-util';
 import { mapState, mapMutations, mapAtions, mapActions } from 'vuex';
 import loading from '@/lib/loading';
 // import DialogForm from './dialog';
-import Panel from '@/components/panel';
+import VPanel from '@/components/panel';
 
 export default {
   name: 'home',
   components: {
     // HelloWorld
-    Panel
+    VPanel
   },
   data() {
     return {

@@ -20,7 +20,7 @@ export default {
     var map = L.map("map").setView(L.latLng(37.550339, 104.114129), 5);
     L.tileLayer(
       // 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-      //  'http://mt2.google.cn/vt/x={x}&y={y}&z={z}'
+      //  'http://mt2.google.cn/vt/x={x}&y={y}&z={z}',
       "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
       //  'http://localhost:8010/{z}/{x}/{y}.png'
       {
@@ -280,7 +280,7 @@ export default {
             },
             effect: {
               show: true,
-              shadowBlur: 50
+              shadowBlur: 40
             },
             itemStyle: {
               normal: {

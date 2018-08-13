@@ -52,33 +52,21 @@ export default new Router({
       component: () => import('@/views/monitor'),
       children: [
         {
-          path: 'map/migrate',
-          name: 'migrate',
-          component: () => import('@/views/map/migrate')
+          path: 'server',
+          name: 'server',
+          component: () => import('@/views/monitor/server')
         },
 
         {
-          path: 'map/heat',
-          name: 'heat',
-          component: () => import('@/views/map/heat')
+          path: 'data',
+          name: 'data',
+          component: () => import('@/views/monitor/data')
         },
 
         {
-          path: 'user',
-          name: 'user',
-          component: () => import('@/views/user')
-        },
-
-        {
-          path: 'chart/bar',
-          name: 'bar',
-          component: () => import('@/views/chart/bar')
-        },
-
-        {
-          path: 'chart/line',
-          name: 'line',
-          component: () => import('@/views/chart/line')
+          path: 'warning',
+          name: 'warning',
+          component: () => import('@/views/monitor/warning')
         }
       ]
     },

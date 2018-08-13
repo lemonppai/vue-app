@@ -12,58 +12,25 @@ export default {
   data() {
     return {
       menuData: [
-        /* {
-          url: '/',
-          title: '首页',
-          icon: 'menu',
-          children: []
-        }, */
         {
-          url: '',
-          title: '管理平台',
+          url: '/monitor/server',
+          title: '服务器监控',
           icon: 'setting',
-          children: [
-            {
-              url: '/monitor/user',
-              title: '用户配置'
-            },
-            /* {
-              url: '/map',
-              title: '地图'
-            }, */
-          ]
+          children: []
         },
 
         {
-          url: '',
-          title: '图表',
-          icon: 'picture',
-          children: [
-            {
-              url: '/monitor/chart/bar',
-              title: '柱状图'
-            },
-            {
-              url: '/monitor/chart/line',
-              title: '折线图'
-            }
-          ]
+          url: '/monitor/data',
+          title: '数据监控',
+          icon: 'setting',
+          children: []
         },
 
         {
-          url: '',
-          title: '地图',
-          icon: 'location',
-          children: [
-            {
-              url: '/monitor/map/migrate',
-              title: '迁徙图'
-            },
-            {
-              url: '/monitor/map/heat',
-              title: '热力图'
-            }
-          ]
+          url: '/monitor/warning',
+          title: '智能预警',
+          icon: 'setting',
+          children: []
         }
       ]
     }
