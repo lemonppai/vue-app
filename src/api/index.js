@@ -7,13 +7,12 @@ import instance from '@/axios.config.js';
 // 用户管理
 export const user = {
   // 获取列表
-  getList(param, success, complete) {
+  getList(param, success) {
     return instance({
       method: 'get',
       url: '/user/getList',
       params: param,
-      loading: false,
-      complete: complete
+      loading: false
     }).then(instance.succ(success));
   },
 
@@ -60,26 +59,24 @@ export const user = {
 
 // 柱状图
 export const bar = {
-  getChart(param, success, complete) {
+  getChart(param, success) {
     return instance({
       method: 'get',
       url: '/bar/getChart',
       params: param,
-      loading: false,
-      complete: complete
+      loading: false
     }).then(instance.succ(success));
   }
 }
 
 // 折线图
 export const line = {
-  getChart(param, success, complete) {
+  getChart(param, success) {
     return instance({
       method: 'get',
       url: '/line/getChart',
       params: param,
-      loading: false,
-      complete: complete
+      loading: false
     }).then(instance.succ(success));
   }
 }

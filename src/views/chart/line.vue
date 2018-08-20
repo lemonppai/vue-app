@@ -44,7 +44,8 @@ export default {
     async refresh() {
       this.showLoading();
       const data = await API[this.name]
-        .getChart(this.form, null, () => this.hideLoading());
+        .getChart(this.form)
+        .finally(() => this.hideLoading());
       this.render(data);
     },
 

@@ -41,12 +41,10 @@ instance.interceptors.request.use(config => {
 // 添加响应拦截器
 instance.interceptors.response.use(res => {
   loadingEnd(res.config);
-  res.config.complete && res.config.complete();
   return res;
 }, err => {
   loadingEnd(err.config);
   Message.error(err.message);
-  err.config.complete && err.config.complete();
   return Promise.reject(err);
 })
 
@@ -58,7 +56,7 @@ instance.succ = (callback) => {
       return Promise.resolve(res.data);
     }
     else {
-      Message.warn(res.msg);
+      Message.warning(res.data.msg);
       return Promise.reject(res.data);
     }
   }

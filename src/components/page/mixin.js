@@ -63,7 +63,7 @@ export default {
           ...this.form,
           pageIndex: this.pagination.pageIndex,
           pageSize: this.pagination.pageSize
-        }, null, () => this.loading = false);
+        }).finally(() => this.loading = false);
 
         // this.loading = false;
         this.pagination.total = data.data.total;
