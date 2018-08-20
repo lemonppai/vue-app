@@ -18,9 +18,11 @@
         <el-header style="padding: 0; height: 50px;">
           <v-header></v-header>
         </el-header>
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </transition>
       </el-container>
     </el-container>
   </div>

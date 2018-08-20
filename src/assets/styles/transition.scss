@@ -6,3 +6,11 @@
   opacity: 0;
   transform: translateY(-2%);
 }
+
+// 淡入淡出
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
