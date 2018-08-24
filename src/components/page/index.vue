@@ -34,7 +34,7 @@
 
 <script>
 import PopoverConfirm from '@/components/popover-confirm';
-import util from 'lemon-util';
+import util from 'jo-util';
 
 export default {
   props: {

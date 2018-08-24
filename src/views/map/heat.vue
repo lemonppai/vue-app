@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 import '@/lib/leaflet-echarts';
 import 'leaflet-echarts/lib/echarts.source';
 
-import util from "lemon-util";
+import util from "jo-util";
 import axios from "axios";
 
 // console.log(leaflet);

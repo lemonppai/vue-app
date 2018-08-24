@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import util from 'lemon-util';
+import util from 'jo-util';
 
 export default {
   props: {

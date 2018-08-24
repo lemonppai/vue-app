@@ -5,7 +5,7 @@
 import axios from 'axios';
 import loading from '@/lib/loading';
 import { Message } from 'element-ui';
-// import util from 'lemon-util';
+// import util from 'jo-util';
 import _ from 'lodash';
 
 const instance = axios.create({

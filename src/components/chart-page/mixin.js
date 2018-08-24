@@ -1,6 +1,6 @@
 import echarts from 'echarts';
 import * as API from '@/api';
-import util from 'lemon-util';
+import util from 'jo-util';
 
 export default {
   data() {

@@ -43,7 +43,9 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 import echarts from 'echarts';
 import 'echarts/map/js/province/jiangsu';
-import util from 'lemon-util';
+import util from 'jo-util';
+import Dragin from 'jo-dragin';
+import DraginResize from 'jo-dragin-resize';
 import { mapState, mapMutations, mapAtions, mapActions } from 'vuex';
 import loading from '@/lib/loading';
 // import DialogForm from './dialog';
@@ -80,6 +82,38 @@ export default {
     this.unbind = util.addEvent(window, 'resize', () => {
       this.resize();
     })
+
+    new Dragin(util.getEls('.panel')[0], {
+      clone: true,
+      limitX: [0, 800],
+      limitY: [0, 800],
+      start(x, y) {
+        console.log('start', x, y);
+      },
+      move(x, y) {
+        // console.log('move', x, y);
+      },
+      end: (x, y) => {
+        // console.log('end', x, y);
+
+        console.log(this.getCollEl(x, y))
+      }
+    })
+
+    /* new DraginResize(this.$refs.ratio, {
+      clone: true,
+      start(x, y) {
+        console.log('start', x, y);
+      },
+      move(x, y) {
+        // console.log('move', x, y);
+      },
+      end: (x, y) => {
+        // console.log('end', x, y);
+
+        console.log(this.getCollEl(x, y))
+      }
+    }); */
   },
 
   methods: {
@@ -87,6 +121,20 @@ export default {
       this.charts.forEach(chart => {
         chart.resize();
       });
+    },
+
+    // 获取碰撞到的区域
+    getCollEl(x, y) {
+      var panels = util.getEls('.panel');
+      for (let el of panels) {
+        // console.log(el)
+        let rect = util.getClientRect(el);
+        if (util.testColl([x, y], [rect.x, rect.y, rect.width, rect.height])) {
+          // console.log(el);
+          return el;
+        }
+      }
+      return null;
     },
 
     renderRatio() {
